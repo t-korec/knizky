@@ -13,9 +13,6 @@ const { metadata } = Astro.props;
 ---
 
 <PageLayout metadata={metadata}>
-  <Fragment slot="announcement">
-    <slot name="announcement" />
-  </Fragment>
   <Fragment slot="header">
     <slot name="header">
       <Header
@@ -23,7 +20,7 @@ const { metadata } = Astro.props;
         actions={[
           {
             text: 'Download',
-            href: 'https://github.com/onwidget/astrowind'
+            href: 'https://github.com/onwidget/astrowind',
           },
         ]}
         showToggleTheme

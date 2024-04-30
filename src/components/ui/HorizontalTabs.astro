@@ -1,0 +1,39 @@
+---
+import { trimSlash } from '~/utils/permalinks';
+
+export interface Props {
+  tabs?: { name: string; href: string }[];
+}
+
+const { tabs } = Astro.props;
+const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
+---
+
+<section class="max-w-full" aria-multiselectable="false">
+  <ul class="flex items-center border-b border-slate-200" role="tablist">
+    {
+      tabs?.map((tab) => (
+        <li role="presentation">
+          <a
+            class:list={[
+              ' hover:stroke-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50 focus-visible:outline-none rounded-t disabled:cursor-not-allowed whitespace-nowrap inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2',
+              currentPath === tab.href
+                ? 'border-emerald-500 hover:border-emerald-600 focus:border-emerald-700 text-emerald-500 hover:text-emerald-600 focus:text-emerald-700   disabled:border-slate-500 stroke-emerald-500 focus:stroke-emerald-700'
+                : 'disabled:text-slate-500 focus:text-emerald-600 focus:stroke-emerald-600 hover:text-emerald-500 border-transparent justify-self-center hover:border-emerald-500 focus:border-emerald-600 text-slate-700 stroke-slate-700',
+            ]}
+            href={tab.href}
+            id="tab-label-1a"
+            role="tab"
+            aria-setsize="3"
+            aria-posinset="1"
+            tabindex="0"
+            aria-controls="tab-panel-1a"
+            aria-selected="true"
+          >
+            <span>{tab.name}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
